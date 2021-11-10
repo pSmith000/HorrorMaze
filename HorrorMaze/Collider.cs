@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MathLibrary;
 
 namespace HorrorMaze
 {
@@ -14,6 +15,7 @@ namespace HorrorMaze
     {
         private Actor _owner;
         private ColliderType _colliderType;
+        private Vector3 _collisionNormal;
 
         public Actor Owner
         {
@@ -24,6 +26,12 @@ namespace HorrorMaze
         public ColliderType ColliderType
         {
             get { return _colliderType; }
+        }
+
+        public Vector3 CollisionNormal
+        {
+            get { return _collisionNormal; }
+            set { _collisionNormal = value; }
         }
 
         public Collider(Actor owner, ColliderType colliderType)

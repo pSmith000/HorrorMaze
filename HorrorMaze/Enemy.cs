@@ -25,8 +25,8 @@ namespace HorrorMaze
             set { _velocity = value; }
         }
 
-        public Enemy(float x, float y, float speed, Player player, string name = "Actor", Shape shape = Shape.CUBE)
-            : base( x, y, name, shape)
+        public Enemy(float x, float y, float z, float speed, Player player, string name = "Actor", Shape shape = Shape.CUBE)
+            : base( x, y, z, name, shape)
         {
             _player = player;
             _speed = speed;
@@ -46,7 +46,7 @@ namespace HorrorMaze
             
 
             if ((moveDirection > -50 && moveDirection < -40) || (moveDirection < 50 && moveDirection > 40))
-                SetScale(8, 8, 8);
+                SetScale(6, 6, 6);
             if (moveDirection > -40 && moveDirection < -30)
                 SetScale(9, 9, 9);
             if (moveDirection > -30 && moveDirection < -20)
@@ -55,11 +55,10 @@ namespace HorrorMaze
                 SetScale(11, 11, 11);
             if (moveDirection > -9 && moveDirection < -7)
                 SetScale(12, 12, 12);
-            if (moveDirection > 10)
-                Scale(Size.X + 1, Size.Y + 1, Size.Z + 1);
 
             AABBCollider enemyCollider = new AABBCollider(Size.X, Size.Y, Size.Z, this);
-            this.Collider = enemyCollider;
+            CircleCollider sizeChangeRadius1 = new CircleCollider(20, this);
+            Collider = enemyCollider;
 
             base.Update(deltaTime);
         }

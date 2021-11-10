@@ -96,6 +96,11 @@ namespace MathLibrary
             return new Vector3 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y, Z = lhs.Z - rhs.Z };
         }
 
+        public static Vector3 operator -(Vector3 lhs)
+        {
+            return new Vector3 { X = -lhs.X, Y = -lhs.Y, Z = -lhs.Z};
+        }
+
         /// <summary>
         /// Multiplies the vectors x and y values by the scalar
         /// </summary>

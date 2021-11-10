@@ -10,6 +10,7 @@ namespace HorrorMaze
     {
         private float _speed;
         private float _currentSpeed;
+        private Vector3 _currentPosition;
         private Vector3 _velocity;
         int i = 80;
 
@@ -25,8 +26,8 @@ namespace HorrorMaze
             set { _velocity = value; }
         }
 
-        public Player(float x, float y, float speed, string name = "Actor", Shape shape = Shape.CUBE) 
-            : base( x, y, name, shape)
+        public Player(float x, float y, float z, float speed, string name = "Actor", Shape shape = Shape.CUBE) 
+            : base( x, y, z, name, shape)
         {
             _speed = speed;
             _currentSpeed = speed;
@@ -34,6 +35,7 @@ namespace HorrorMaze
 
         public override void Update(float deltaTime)
         {
+            _currentPosition = Velocity;
             //Get the player input direction
             int xDirection = Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
@@ -47,6 +49,8 @@ namespace HorrorMaze
 
 
             Velocity = ((zDirection * Forward) + (xDirection * Right)).Normalized * _currentSpeed * deltaTime;
+
+            
 
             _currentSpeed = Speed;
 
@@ -63,8 +67,9 @@ namespace HorrorMaze
 
             if (actor.Name == "Wall")
             {
-                _currentSpeed = 0;
-                WorldPosition /= 1.0005f;
+                Velocity = actor.Collider.CollisionNormal * Velocity.Magnitude;
+                
+                Translate(Velocity.X, Velocity.Y, Velocity.Z);
             }
             
         }

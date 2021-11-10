@@ -51,6 +51,10 @@ namespace HorrorMaze
             //Add the direction vector to the AABB center to get the closest point to the circle
             Vector3 closestPoint = other.Owner.WorldPosition + direction;
 
+            CollisionNormal = (closestPoint - Owner.WorldPosition).Normalized;
+
+            other.CollisionNormal = (Owner.WorldPosition - closestPoint).Normalized;
+
             //Find the distance from the circle's center to the closest point
             float distanceFromClosestPoint = Vector3.Distance(Owner.WorldPosition, closestPoint);
 
