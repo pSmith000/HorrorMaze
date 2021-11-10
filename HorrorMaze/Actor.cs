@@ -27,7 +27,7 @@ namespace HorrorMaze
         private Actor[] _children = new Actor[0];
         private Actor _parent;
         private Shape _shape;
-        private Color _color = new Color(255, 255, 255, 255);
+        private Color _color = new Color(100, 100, 100, 255);
 
         public Color ShapeColor
         {

@@ -73,8 +73,16 @@ namespace HorrorMaze
             Raylib.InitWindow(900, 500, "Math for Games");
             Raylib.SetTargetFPS(60);
 
+            Initialize();
+
+            _scenes[_currentSceneIndex].Start();
+        }
+
+        public void Initialize()
+        {
+
             Scene scene = new Scene();
-         
+
             player = new Player(0, 0, -90, 20, "Player", Shape.SPHERE);
             _camera = new Camera(player);
             player.SetScale(1, 1, 1);
@@ -88,11 +96,21 @@ namespace HorrorMaze
 
             Actor wall2 = new Actor(0, -2, 100, "Wall");
             wall2.SetScale(200, 50, 2);
-            wall2.SetColor(new Vector4(0, 200, 50, 255));
 
             Actor wall3 = new Actor(0, -2, -100, "Wall");
             wall3.SetScale(200, 50, 2);
-            wall3.SetColor(new Vector4(0, 200, 50, 255));
+
+            Actor wall4 = new Actor(100, -2, 0, "Wall");
+            wall4.SetScale(2, 50, 200);
+
+            Actor wall5 = new Actor(-100, -2, 0, "Wall");
+            wall5.SetScale(2, 50, 200);
+
+            Actor wall6 = new Actor(10, -2, -90, "Wall");
+            wall6.SetScale(2, 50, 20);
+
+            Actor wall7 = new Actor(-10, -2, -90, "Wall");
+            wall7.SetScale(2, 50, 80);
 
             Enemy enemy = new Enemy(50, 1, 50, 5, player, "Enemy", Shape.CUBE);
             enemy.SetTranslation(50, 1, 50);
@@ -101,11 +119,19 @@ namespace HorrorMaze
             AABBCollider wallCollider = new AABBCollider(200, 1, 200, wall);
             AABBCollider wall2Collider = new AABBCollider(200, 50, 2, wall2);
             AABBCollider wall3Collider = new AABBCollider(200, 50, 2, wall3);
+            AABBCollider wall4Collider = new AABBCollider(2, 50, 200, wall4);
+            AABBCollider wall5Collider = new AABBCollider(2, 50, 200, wall5);
+            AABBCollider wall6Collider = new AABBCollider(2, 50, 20, wall6);
+            AABBCollider wall7Collider = new AABBCollider(2, 50, 40, wall7);
 
             player.Collider = playerCircleCollider;
             wall.Collider = wallCollider;
             wall2.Collider = wall2Collider;
             wall3.Collider = wall3Collider;
+            wall4.Collider = wall4Collider;
+            wall5.Collider = wall5Collider;
+            wall6.Collider = wall6Collider;
+            wall7.Collider = wall7Collider;
 
             scene.AddActor(player);
             scene.AddActor(enemy);
@@ -113,11 +139,12 @@ namespace HorrorMaze
             scene.AddActor(wall);
             scene.AddActor(wall2);
             scene.AddActor(wall3);
-
-            Raylib.DrawText("YES", 10, 10, 100, Color.MAGENTA);
+            scene.AddActor(wall4);
+            scene.AddActor(wall5);
+            scene.AddActor(wall6);
+            scene.AddActor(wall7);
 
             _currentSceneIndex = AddScene(scene);
-            _scenes[_currentSceneIndex].Start();
         }
 
         /// <summary>
@@ -127,9 +154,6 @@ namespace HorrorMaze
         {
             _scenes[_currentSceneIndex].Update(deltaTime);
 
-            
-                
-            
             while (Console.KeyAvailable)
                 Console.ReadKey(true);
 
