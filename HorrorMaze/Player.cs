@@ -9,6 +9,7 @@ namespace HorrorMaze
     class Player : Actor
     {
         private float _speed;
+        private float _currentSpeed;
         private Vector3 _velocity;
         int i = 80;
 
@@ -28,6 +29,7 @@ namespace HorrorMaze
             : base( x, y, name, shape)
         {
             _speed = speed;
+            _currentSpeed = speed;
         }
 
         public override void Update(float deltaTime)
@@ -44,8 +46,9 @@ namespace HorrorMaze
 
 
 
-            Velocity = (zDirection * Forward.Normalized / 2) + (xDirection * Right.Normalized) * Speed * deltaTime;
+            Velocity = ((zDirection * Forward) + (xDirection * Right)).Normalized * _currentSpeed * deltaTime;
 
+            _currentSpeed = Speed;
 
             Rotate(0, rotZRotation * 0.05f, 0);
             Translate(Velocity.X, Velocity.Y, Velocity.Z);
@@ -57,6 +60,12 @@ namespace HorrorMaze
         public override void OnCollision(Actor actor)
         {
             Console.WriteLine("Collision occured " + actor.Name);
+
+            if (actor.Name == "Wall")
+            {
+                _currentSpeed = 0;
+                WorldPosition /= 1.0005f;
+            }
             
         }
 

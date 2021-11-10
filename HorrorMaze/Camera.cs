@@ -28,7 +28,7 @@ namespace HorrorMaze
         {
             // Camera position
             _camera3D.up = new System.Numerics.Vector3(0, 1, 0); //Camera up vector (rotation towards target)
-            _camera3D.fovy = 45; // Camera field of view Y
+            _camera3D.fovy = 55; // Camera field of view Y
             _camera3D.projection = CameraProjection.CAMERA_PERSPECTIVE; //Camera mode type
 
             SetTranslation(0, 4, -10);
@@ -37,7 +37,7 @@ namespace HorrorMaze
         public override void Update(float deltaTime)
         {
             // Camera position
-            _camera3D.position = new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z);
+            _camera3D.position = new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y - 1, WorldPosition.Z);
             // Point the camera is focused on
             _camera3D.target = new System.Numerics.Vector3(_target.WorldPosition.X, _target.WorldPosition.Y, _target.WorldPosition.Z);
 

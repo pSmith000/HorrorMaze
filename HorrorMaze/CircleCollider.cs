@@ -46,7 +46,7 @@ namespace HorrorMaze
             //Clamp the direction vector to hbe within the bounds of the AABB
             direction.X = Math.Clamp(direction.X, -other.Width/2, other.Width/2);
             direction.Y = Math.Clamp(direction.Y, -other.Height/2, other.Height/2);
-            direction.Z = Math.Clamp(direction.Z, -other.Depth / 2, other.Depth / 2);
+            direction.Z = Math.Clamp(direction.Z, -other.Depth/2, other.Depth/2);
 
             //Add the direction vector to the AABB center to get the closest point to the circle
             Vector3 closestPoint = other.Owner.WorldPosition + direction;

@@ -140,6 +140,12 @@ namespace MathLibrary
             return (lhs.X == rhs.X && lhs.Y == rhs.Y && lhs.Z == rhs.Z);
         }
 
+        public static bool operator ==(Vector3 lhs, float rhs)
+        {
+            return (lhs.X == rhs || lhs.Y == rhs || lhs.Z == rhs);
+        }
+
+
         /// <summary>
         /// Compares the x and y values of two vectors
         /// </summary>
@@ -149,6 +155,24 @@ namespace MathLibrary
         public static bool operator !=(Vector3 lhs, Vector3 rhs)
         {
             return (!(lhs.X == rhs.X && lhs.Y == rhs.Y && lhs.Z == rhs.Z));
+
+        }
+
+        public static bool operator !=(Vector3 lhs, float rhs)
+        {
+            return (!(lhs.X == rhs && lhs.Y == rhs && lhs.Z == rhs));
+
+        }
+
+        public static bool operator <(Vector3 lhs, float rhs)
+        {
+            return (lhs.X < rhs || lhs.Y <= rhs || lhs.X < rhs);
+
+        }
+
+        public static bool operator >(Vector3 lhs, float rhs)
+        {
+            return (lhs.X > rhs && lhs.Y >= rhs && lhs.X > rhs);
 
         }
     }
