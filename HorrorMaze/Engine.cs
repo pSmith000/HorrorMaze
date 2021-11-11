@@ -112,7 +112,10 @@ namespace HorrorMaze
             Actor wall7 = new Actor(-10, -2, -90, "Wall");
             wall7.SetScale(2, 50, 80);
 
-            Enemy enemy = new Enemy(50, 1, 50, 5, player, "Enemy", Shape.CUBE);
+            Actor wall8 = new Actor(34, -2, -80, "Wall");
+            wall8.SetScale(50, 50, 2);
+
+            Enemy enemy = new Enemy(50, 1, 50, 10, player, "Enemy", Shape.CUBE);
             enemy.SetTranslation(50, 1, 50);
             enemy.SetColor(new Vector4(255, 0, 0, 255));
             enemy.SetScale(10, 10, 10);
@@ -123,6 +126,7 @@ namespace HorrorMaze
             AABBCollider wall5Collider = new AABBCollider(2, 50, 200, wall5);
             AABBCollider wall6Collider = new AABBCollider(2, 50, 20, wall6);
             AABBCollider wall7Collider = new AABBCollider(2, 50, 40, wall7);
+            AABBCollider wall8Collider = new AABBCollider(50, 50, 2, wall8);
 
             player.Collider = playerCircleCollider;
             wall.Collider = wallCollider;
@@ -132,6 +136,7 @@ namespace HorrorMaze
             wall5.Collider = wall5Collider;
             wall6.Collider = wall6Collider;
             wall7.Collider = wall7Collider;
+            wall8.Collider = wall8Collider;
 
             scene.AddActor(player);
             scene.AddActor(enemy);
@@ -143,6 +148,7 @@ namespace HorrorMaze
             scene.AddActor(wall5);
             scene.AddActor(wall6);
             scene.AddActor(wall7);
+            scene.AddActor(wall8);
 
             _currentSceneIndex = AddScene(scene);
         }
