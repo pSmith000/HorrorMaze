@@ -43,18 +43,47 @@ namespace HorrorMaze
 
             LookAt(_player.WorldPosition);
 
-            
 
             if ((moveDirection > -50 && moveDirection < -40) || (moveDirection < 50 && moveDirection > 40))
-                SetScale(6, 6, 6);
+            {
+                foreach (Actor child in Children)
+                {
+                    SetScale(4, 4, 4);
+                    child.SetScale(4, 4, 4);
+                }
+            }
             if (moveDirection > -40 && moveDirection < -30)
-                SetScale(9, 9, 9);
+            {
+                foreach (Actor child in Children)
+                {
+                    SetScale(5, 5, 5);
+                    child.SetScale(5, 5, 5);
+                }
+            }
             if (moveDirection > -30 && moveDirection < -20)
-                SetScale(10, 10, 10);
+            {
+                foreach (Actor child in Children)
+                {
+                    SetScale(7, 7, 7);
+                    child.SetScale(7, 7, 7);
+                }
+            } 
             if (moveDirection > -10 && moveDirection < -9)
-                SetScale(11, 11, 11);
+            {
+                foreach (Actor child in Children)
+                {
+                    SetScale(11, 11, 11);
+                    child.SetScale(11, 11, 11);
+                }
+            }
             if (moveDirection > -9 && moveDirection < -7)
-                SetScale(12, 12, 12);
+            {
+                foreach (Actor child in Children)
+                {
+                    SetScale(12, 12, 12);
+                    child.SetScale(12, 12, 12);
+                }
+            }
 
             AABBCollider enemyCollider = new AABBCollider(Size.X, Size.Y, Size.Z, this);
             CircleCollider sizeChangeRadius1 = new CircleCollider(20, this);

@@ -55,7 +55,7 @@ namespace HorrorMaze
             _currentSpeed = Speed;
 
             Rotate(0, rotZRotation * 0.05f, 0);
-            Translate(Velocity.X, Velocity.Y, Velocity.Z);
+            Translate(Velocity.X, 0, Velocity.Z);
 
             base.Update(deltaTime);
             

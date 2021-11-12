@@ -365,6 +365,7 @@ namespace HorrorMaze
                                     newXAxis.Y, newYAxis.Y, direction.Y, 0,
                                     newXAxis.Z, newYAxis.Z, direction.Z, 0,
                                     0, 0, 0, 1);
+
         }
 
         /// <summary>

@@ -52,25 +52,16 @@ namespace HorrorMaze
 
         }
 
-        //private void InitializeCamera()
-        //{
-        //    _camera.position = new System.Numerics.Vector3(0, 10, 10); // Camera Position
-        //    _camera.target = new System.Numerics.Vector3(0, 0, 0); // Point the camera is focused on
-        //    _camera.up = new System.Numerics.Vector3(0, 1, 0); // Camera up vector (rotation towards target)
-        //    _camera.fovy = 45; // Camera field of view Y
-        //    _camera.projection = CameraProjection.CAMERA_PERSPECTIVE; // Camera mode type
-        //}
 
         /// <summary>
-        /// Calledwhen the application starts
+        /// Called when the application starts
         /// </summary>
         private void Start()
         {
-            
             _stopwatch.Start();
             //Create a window using raylib
-            //Raylib.InitWindow(1920, 1080, "Math for Games");
-            Raylib.InitWindow(900, 500, "Math for Games");
+            Raylib.InitWindow(1920, 1080, "Math for Games");
+            //Raylib.InitWindow(900, 500, "Math for Games");
             Raylib.SetTargetFPS(60);
 
             Initialize();
@@ -83,7 +74,7 @@ namespace HorrorMaze
 
             Scene scene = new Scene();
 
-            player = new Player(0, 0, -90, 20, "Player", Shape.SPHERE);
+            player = new Player(0, 0, -90, 100, "Player", Shape.SPHERE);
             _camera = new Camera(player);
             player.SetScale(1, 1, 1);
             CircleCollider playerCircleCollider = new CircleCollider(1, player);
@@ -119,6 +110,16 @@ namespace HorrorMaze
             enemy.SetTranslation(50, 1, 50);
             enemy.SetColor(new Vector4(255, 0, 0, 255));
             enemy.SetScale(10, 10, 10);
+            Actor enemyTorso = new Actor(0, 1, 0, "Enemy");
+            enemyTorso.SetColor(new Vector4(255, 0, 0, 255));
+            enemy.AddChild(enemyTorso);
+            Actor enemyHead = new Actor(0, 2, 0, "Enemy", Shape.SPHERE);
+            enemyHead.SetColor(new Vector4(255, 0, 10, 255));
+            enemy.AddChild(enemyHead);
+            Actor enemyEye1 = new Actor(0, 0, 0, "Enemy", Shape.SPHERE);
+            enemyEye1.SetScale(1, 1, 1);
+            enemyEye1.SetColor(new Vector4(0, 0, 10, 255));
+            enemyHead.AddChild(enemyEye1);
             AABBCollider wallCollider = new AABBCollider(200, 1, 200, wall);
             AABBCollider wall2Collider = new AABBCollider(200, 50, 2, wall2);
             AABBCollider wall3Collider = new AABBCollider(200, 50, 2, wall3);
@@ -140,6 +141,9 @@ namespace HorrorMaze
 
             scene.AddActor(player);
             scene.AddActor(enemy);
+            scene.AddActor(enemyTorso);
+            scene.AddActor(enemyHead);
+            scene.AddActor(enemyEye1);
             scene.AddActor(_camera);
             scene.AddActor(wall);
             scene.AddActor(wall2);
@@ -174,7 +178,7 @@ namespace HorrorMaze
             Raylib.BeginMode3D(_camera.Camera3D);
             
 
-            Raylib.ClearBackground(Color.RAYWHITE);
+            Raylib.ClearBackground(Color.BLACK);
             Raylib.DrawGrid(100, 10);
 
             //Adds all actor icons to buffer
