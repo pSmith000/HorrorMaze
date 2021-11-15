@@ -37,7 +37,7 @@ namespace HorrorMaze
         public override void Update(float deltaTime)
         {
             // Camera position
-            _camera3D.position = new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y - 1, WorldPosition.Z);
+            _camera3D.position = new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y - 2, WorldPosition.Z);
             // Point the camera is focused on
             _camera3D.target = new System.Numerics.Vector3(_target.WorldPosition.X, _target.WorldPosition.Y, _target.WorldPosition.Z);
 

@@ -199,7 +199,55 @@ namespace HorrorMaze
 
             Wall wall35 = new Wall(-85, -2, 10, 30, 50, 2, scene);
 
-            Wall wall36 = new Wall(-70, -2, 30, 2, 50, 41, scene);
+            Wall wall36 = new Wall(-70, -2, 29, 2, 50, 41, scene);
+
+            Wall wall37 = new Wall(-85, -2, 55, 2, 50, 50, scene);
+
+            Wall wall38 = new Wall(-79, -2, 80, 60, 50, 2, scene);
+
+            Wall wall39 = new Wall(-50, -2, 50, 2, 50, 60, scene);
+
+            Wall wall40 = new Wall(-30, -2, 80, 2, 50, 60, scene);
+
+            Wall wall41 = new Wall(-30, -2, 25, 2, 50, 30, scene);
+
+            Wall wall42 = new Wall(80, -2, 35, 2, 50, 30, scene);
+
+            Wall wall43 = new Wall(60, -2, 70, 40, 50, 2, scene);
+
+            Wall wall44 = new Wall(50, -2, 75, 2, 50, 10, scene);
+
+            Wall wall45 = new Wall(60, -2, 75, 2, 50, 10, scene);
+
+            Wall wall46 = new Wall(70, -2, 75, 2, 50, 10, scene);
+
+            Wall wall47 = new Wall(5, -2, 80, 50, 50, 2, scene);
+
+            Wall wall48 = new Wall(5, -2, 90, 2, 50, 20, scene);
+
+            Wall wall49 = new Wall(60, -2, 30, 2, 50, 22, scene);
+
+            Wall wall50 = new Wall(40, -2, 30, 2, 50, 22, scene);
+
+            Wall wall51 = new Wall(25, -2, 20, 30, 50, 2, scene);
+
+            Wall wall52 = new Wall(10, -2, 16, 2, 50, 10, scene);
+
+            Wall wall53 = new Wall(1, -2, 10, 20, 50, 2, scene);
+
+            Wall wall54 = new Wall(-10, -2, 29, 2, 50, 40, scene);
+
+            Wall wall55 = new Wall(10, -2, 65, 40, 50, 2, scene);
+
+            Wall wall56 = new Wall(25, -2, 40, 30, 50, 2, scene);
+
+            Wall wall57 = new Wall(80, -2, 60, 2, 50, 20, scene);
+
+            Wall wall58 = new Wall(10, -2, 75, 2, 50, 10, scene);
+
+            Wall wall59 = new Wall(0, -2, 70, 2, 50, 10, scene);
+
+            Wall wall60 = new Wall(20, -2, 70, 2, 50, 10, scene);
 
         }
 
