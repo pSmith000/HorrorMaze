@@ -76,7 +76,7 @@ namespace HorrorMaze
         /// </summary>
         public void InitializeCharacters()
         {
-            player = new Player(0, 0, -90, 20, "Player", Shape.SPHERE);
+            player = new Player(0, 1, -90, 20, "Player", Shape.SPHERE);
             _camera = new Camera(player);
             player.SetScale(1, 1, 1);
             CircleCollider playerCircleCollider = new CircleCollider(1, player);
@@ -97,6 +97,15 @@ namespace HorrorMaze
             enemyEye1.SetScale(1, 1, 1);
             enemyEye1.SetColor(new Vector4(0, 0, 10, 255));
             enemyHead.AddChild(enemyEye1);
+
+            Random rnd = new Random();
+            float randomX = rnd.Next(-95, 95);
+            float randomZ = rnd.Next(-95, 95);
+            Actor winCircle = new Actor(randomX, 3, randomZ, "Win", Shape.SPHERE);
+            winCircle.SetColor(new Vector4(0, 255, 0, 255));
+            winCircle.SetScale(3, 3, 3);
+            CircleCollider winCollider = new CircleCollider(3, winCircle);
+            winCircle.Collider = winCollider;
             
             player.Collider = playerCircleCollider;
             
@@ -106,6 +115,7 @@ namespace HorrorMaze
             scene.AddActor(enemyHead);
             scene.AddActor(enemyEye1);
             scene.AddActor(_camera);
+            scene.AddActor(winCircle);
             
             _currentSceneIndex = AddScene(scene);
         }
@@ -115,7 +125,7 @@ namespace HorrorMaze
         /// </summary>
         public void InitializeWalls()
         {
-            Wall wall = new Wall(0, -2, 0, 200, 1, 200, scene);
+            Wall wall = new Wall(0, -1, 0, 200, 1, 200, scene);
             wall.SetColor(new Vector4(0, 0, 0, 255));
 
             Wall wall2 = new Wall(0, -2, 100, 200, 50, 2, scene);
@@ -168,11 +178,28 @@ namespace HorrorMaze
 
             Wall wall25 = new Wall(60, -2, 0, 42, 50, 2, scene);
 
-            Wall wall26 = new Wall(10, -2, -10, 20, 50, 2, scene);
+            Wall wall26 = new Wall(10, -2, -10, 60, 50, 2, scene);
 
             Wall wall27 = new Wall(20, -2, -5.5f, 2, 50, 11, scene);
 
             Wall wall28 = new Wall(-40, -2, -30, 40, 50, 2, scene);
+
+            Wall wall29 = new Wall(30, -2, 0, 22, 50, 2, scene);
+
+            Wall wall30 = new Wall(-20, -2, -10, 2, 50, 2, scene);
+            wall30.SetScale(40, 50, 2);
+
+            Wall wall31 = new Wall(-72.5f, -2, -30, 11, 50, 2, scene);
+
+            Wall wall32 = new Wall(-72.5f, -2, -50, 1, 50, 40, scene);
+
+            Wall wall33 = new Wall(-85, -2, -25, 2, 50, 30, scene);
+
+            Wall wall34 = new Wall(-63, -2, -10, 46, 50, 2, scene);
+
+            Wall wall35 = new Wall(-85, -2, 10, 30, 50, 2, scene);
+
+            Wall wall36 = new Wall(-70, -2, 30, 2, 50, 41, scene);
 
         }
 
