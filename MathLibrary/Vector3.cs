@@ -171,13 +171,13 @@ namespace MathLibrary
 
         public static bool operator <(Vector3 lhs, float rhs)
         {
-            return (lhs.X < rhs || lhs.Y <= rhs || lhs.X < rhs);
+            return (lhs.X < rhs || lhs.Y <= rhs || lhs.Z < rhs);
 
         }
 
         public static bool operator >(Vector3 lhs, float rhs)
         {
-            return (lhs.X > rhs && lhs.Y >= rhs && lhs.X > rhs);
+            return (lhs.X > rhs && lhs.Y >= rhs && lhs.Z > rhs);
 
         }
     }

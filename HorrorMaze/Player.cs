@@ -45,12 +45,7 @@ namespace HorrorMaze
             int rotZRotation = Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
            - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT));
 
-
-
-
             Velocity = ((zDirection * Forward) + (xDirection * Right)).Normalized * _currentSpeed * deltaTime;
-
-            
 
             _currentSpeed = Speed;
 

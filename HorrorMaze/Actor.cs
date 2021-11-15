@@ -228,8 +228,6 @@ namespace HorrorMaze
         public virtual void Update(float deltaTime)
         {
             UpdateTransforms();
-
-                
         }
 
         public virtual void Draw()

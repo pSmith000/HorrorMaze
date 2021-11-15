@@ -37,30 +37,44 @@ namespace HorrorMaze
             
             Vector3 moveDirection = _player.LocalPosition - LocalPosition;
 
+            float distance = Vector3.Distance(_player.LocalPosition, LocalPosition);
+
             Velocity = moveDirection.Normalized * Speed * deltaTime;
 
             Translate(Velocity.X, Velocity.Y, Velocity.Z);
 
             LookAt(_player.WorldPosition);
 
+            Console.Write(distance + "\n");
 
-            if ((moveDirection > -50 && moveDirection < -40) || (moveDirection < 50 && moveDirection > 40))
+            if (distance > 60)
+            {
+                foreach (Actor child in Children)
+                {
+                    SetScale(3, 3, 3);
+                    child.SetScale(3, 3, 3);
+                    _speed = 30;
+                }
+            }
+            if (distance < 60 && distance > 50)
             {
                 foreach (Actor child in Children)
                 {
                     SetScale(4, 4, 4);
                     child.SetScale(4, 4, 4);
+                    _speed = 55;
                 }
             }
-            if (moveDirection > -40 && moveDirection < -30)
+            if (distance < 50 && distance > 40)
             {
                 foreach (Actor child in Children)
                 {
                     SetScale(5, 5, 5);
                     child.SetScale(5, 5, 5);
+                    _speed = 50;
                 }
             }
-            if (moveDirection > -30 && moveDirection < -20)
+            if (distance < 40 && distance > 30)
             {
                 foreach (Actor child in Children)
                 {
@@ -68,20 +82,13 @@ namespace HorrorMaze
                     child.SetScale(7, 7, 7);
                 }
             } 
-            if (moveDirection > -10 && moveDirection < -9)
+            if (distance < 20 && distance > 10)
             {
                 foreach (Actor child in Children)
                 {
-                    SetScale(11, 11, 11);
-                    child.SetScale(11, 11, 11);
-                }
-            }
-            if (moveDirection > -9 && moveDirection < -7)
-            {
-                foreach (Actor child in Children)
-                {
-                    SetScale(12, 12, 12);
-                    child.SetScale(12, 12, 12);
+                    SetScale(9, 9, 9);
+                    child.SetScale(9, 9, 9);
+                    _speed = 5;
                 }
             }
 
