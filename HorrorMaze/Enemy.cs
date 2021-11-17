@@ -12,7 +12,6 @@ namespace HorrorMaze
         private float _speed;
         private Vector3 _velocity;
         private Player _player;
-        float x = 10;
 
         /// <summary>
         /// The speed of the enemy
