@@ -8,6 +8,9 @@ namespace MathLibrary
     {
         public float M00, M01, M02, M10, M11, M12, M20, M21, M22;
 
+        /// <summary>
+        /// A 2-D Matrix
+        /// </summary>
         public Matrix3(float m00, float m01, float m02,
                        float m10, float m11, float m12,
                        float m20, float m21, float m22)
@@ -17,6 +20,9 @@ namespace MathLibrary
             M20 = m20; M21 = m21; M22 = m22;
         }
 
+        /// <summary>
+        /// A 2-D Matrix identity
+        /// </summary>
         public static Matrix3 Identity
         {
             get
@@ -52,6 +58,11 @@ namespace MathLibrary
                                0, 0, 1);
         }
 
+        /// <summary>
+        /// Creates a new matrix that has been translated by the given value
+        /// </summary>
+        /// <param name="vector">the vector to be translated by</param>
+        /// <returns></returns>
         public static Matrix3 CreateTranslation(Vector2 vector)
         {
             return new Matrix3(1, 0, vector.X,
@@ -72,6 +83,12 @@ namespace MathLibrary
                                0, 0, 1);
         }
 
+        /// <summary>
+        /// Overload of the plus operator to add matricies
+        /// </summary>
+        /// <param name="lhs">the left matrix to be added</param>
+        /// <param name="rhs">the right matrix to be added</param>
+        /// <returns>the added matricies</returns>
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3(lhs.M00 + rhs.M00, lhs.M01 + rhs.M01, lhs.M02 + rhs.M02,
@@ -79,6 +96,12 @@ namespace MathLibrary
                                lhs.M20 + rhs.M20, lhs.M21 + rhs.M21, lhs.M22 + rhs.M22);
         }
 
+        /// <summary>
+        /// Overload of the subtraction operator to add matricies
+        /// </summary>
+        /// <param name="lhs">the left matrix to be subtracted</param>
+        /// <param name="rhs">the right matrix to be subtracted</param>
+        /// <returns>the subtracted matricies</returns>
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3(lhs.M00 - rhs.M00, lhs.M01 - rhs.M01, lhs.M02 - rhs.M02,
@@ -86,6 +109,12 @@ namespace MathLibrary
                                lhs.M20 - rhs.M20, lhs.M21 - rhs.M21, lhs.M22 - rhs.M22);
         }
 
+        /// <summary>
+        /// Overload of the multiplication operator to multiply matricies
+        /// </summary>
+        /// <param name="lhs">the left matrix to be multiplied</param>
+        /// <param name="rhs">the right matrix to be multiplied</param>
+        /// <returns>the multiplied matricies</returns>
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
             Matrix3 tempMatrix;
@@ -112,6 +141,12 @@ namespace MathLibrary
             return tempMatrix;
         }
 
+        /// <summary>
+        /// Overload of the multiplication operator to multiply a matrix by a vector
+        /// </summary>
+        /// <param name="lhs">the left matrix to be multiplied</param>
+        /// <param name="rhs">the right vector to be multiplied</param>
+        /// <returns>the multiplied matrix</returns>
         public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
         {
             return new Vector3

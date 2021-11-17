@@ -215,7 +215,7 @@ namespace HorrorMaze
 
             //If the actor has a child...
             if (Parent != null)
-                //...the gloabal transform is set
+                //...the global transform is set
                 GlobalTransform = Parent.GlobalTransform * LocalTransform;
             //If the actor does not have a child...
             else

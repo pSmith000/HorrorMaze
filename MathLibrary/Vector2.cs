@@ -7,6 +7,11 @@ namespace MathLibrary
         public float X;
         public float Y;
 
+        /// <summary>
+        /// A 2-D vector
+        /// </summary>
+        /// <param name="x">the x of the vector</param>
+        /// <param name="y">the y of the vector</param>
         public Vector2(float x, float y)
         {
             X = x;
@@ -56,6 +61,12 @@ namespace MathLibrary
             return this /= Magnitude;
         }
 
+        /// <summary>
+        /// The distance between two vectors
+        /// </summary>
+        /// <param name="lhs">the left vector</param>
+        /// <param name="rhs">the right vector</param>
+        /// <returns>The result of the distance betwen the two vectors</returns>
         public static float Distance(Vector2 lhs, Vector2 rhs)
         {
             return (rhs - lhs).Magnitude;

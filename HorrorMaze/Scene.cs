@@ -11,6 +11,9 @@ namespace HorrorMaze
         /// </summary>
         private Actor[] _actors;
 
+        /// <summary>
+        /// The scene constructor
+        /// </summary>
         public Scene()
         {
             _actors = new Actor[0];

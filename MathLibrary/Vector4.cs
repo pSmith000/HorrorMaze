@@ -36,6 +36,9 @@ namespace MathLibrary
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z);
         }
 
+        /// <param name="lhs">The left hand side of the operation</param>
+        /// <param name="rhs">The right hand side of the operation</param>
+        /// <returns>The cross product of the first vector on to the second</returns>
         public static Vector4 CrossProduct(Vector4 lhs, Vector4 rhs)
         {
             return new Vector4
@@ -71,6 +74,12 @@ namespace MathLibrary
             return this /= Magnitude;
         }
 
+        /// <summary>
+        /// The distance between two vectors
+        /// </summary>
+        /// <param name="lhs">the left vector</param>
+        /// <param name="rhs">the right vector</param>
+        /// <returns>The result of the distance betwen the two vectors</returns>
         public static float Distance(Vector4 lhs, Vector4 rhs)
         {
             return (rhs - lhs).Magnitude;

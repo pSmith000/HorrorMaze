@@ -34,6 +34,12 @@ namespace MathLibrary
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z);
         }
 
+        /// <summary>
+        /// Finds the perpendicular vector between two vectors
+        /// </summary>
+        /// <param name="lhs">the left vector</param>
+        /// <param name="rhs">the right vector</param>
+        /// <returns>the cross product between the two vectors</returns>
         public static Vector3 CrossProduct(Vector3 lhs, Vector3 rhs)
         {
             return new Vector3
@@ -68,6 +74,12 @@ namespace MathLibrary
             return this /= Magnitude;
         }
 
+        /// <summary>
+        /// The distance between two vectors
+        /// </summary>
+        /// <param name="lhs">the left vector</param>
+        /// <param name="rhs">the right vector</param>
+        /// <returns>The result of the distance betwen the two vectors</returns>
         public static float Distance(Vector3 lhs, Vector3 rhs)
         {
             return (rhs - lhs).Magnitude;
@@ -96,6 +108,11 @@ namespace MathLibrary
             return new Vector3 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y, Z = lhs.Z - rhs.Z };
         }
 
+        /// <summary>
+        /// Makes the vector negative
+        /// </summary>
+        /// <param name="lhs">the vector to be made negative</param>
+        /// <returns>the negative vector</returns>
         public static Vector3 operator -(Vector3 lhs)
         {
             return new Vector3 { X = -lhs.X, Y = -lhs.Y, Z = -lhs.Z};
@@ -145,6 +162,12 @@ namespace MathLibrary
             return (lhs.X == rhs.X && lhs.Y == rhs.Y && lhs.Z == rhs.Z);
         }
 
+        /// <summary>
+        /// Compares a vector to a float
+        /// </summary>
+        /// <param name="lhs">the left side of the comparison</param>
+        /// <param name="rhs">the right side of the complarison</param>
+        /// <returns>true if all parts of the vector are equal to the float</returns>
         public static bool operator ==(Vector3 lhs, float rhs)
         {
             return (lhs.X == rhs || lhs.Y == rhs || lhs.Z == rhs);
@@ -163,18 +186,36 @@ namespace MathLibrary
 
         }
 
+        /// <summary>
+        /// Compares a vector to a float
+        /// </summary>
+        /// <param name="lhs">the left side of the comparison</param>
+        /// <param name="rhs">the right side of the complarison</param>
+        /// <returns>true if any part of the vector is not equal to the float</returns>
         public static bool operator !=(Vector3 lhs, float rhs)
         {
             return (!(lhs.X == rhs && lhs.Y == rhs && lhs.Z == rhs));
 
         }
 
+        /// <summary>
+        /// Compares a vector to a float
+        /// </summary>
+        /// <param name="lhs">the left side of the comparison</param>
+        /// <param name="rhs">the right side of the complarison</param>
+        /// <returns>true if all parts of the vector are less than the float</returns>
         public static bool operator <(Vector3 lhs, float rhs)
         {
             return (lhs.X < rhs || lhs.Y <= rhs || lhs.Z < rhs);
 
         }
 
+        /// <summary>
+        /// Compares a vector to a float
+        /// </summary>
+        /// <param name="lhs">the left side of the comparison</param>
+        /// <param name="rhs">the right side of the complarison</param>
+        /// <returns>true if all parts of the vector are greater than the float</returns>
         public static bool operator >(Vector3 lhs, float rhs)
         {
             return (lhs.X > rhs && lhs.Y >= rhs && lhs.Z > rhs);

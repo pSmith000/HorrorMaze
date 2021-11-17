@@ -8,6 +8,9 @@ namespace MathLibrary
     {
         public float M00, M01, M02, M03, M10, M11, M12, M13, M20, M21, M22, M23, M30, M31, M32, M33;
 
+        /// <summary>
+        /// A 3-D Matrix
+        /// </summary>
         public Matrix4(
             float m00, float m01, float m02, float m03,
             float m10, float m11, float m12, float m13,
@@ -105,6 +108,12 @@ namespace MathLibrary
                 );
         }
 
+        /// <summary>
+        /// Overload of the plus operator to add matricies
+        /// </summary>
+        /// <param name="lhs">the left matrix to be added</param>
+        /// <param name="rhs">the right matrix to be added</param>
+        /// <returns>the added matricies</returns>
         public static Matrix4 operator +(Matrix4 lhs, Matrix4 rhs)
         {
             return new Matrix4(
@@ -115,6 +124,12 @@ namespace MathLibrary
                 );
         }
 
+        /// <summary>
+        /// Overload of the subtraction operator to add matricies
+        /// </summary>
+        /// <param name="lhs">the left matrix to be subtracted</param>
+        /// <param name="rhs">the right matrix to be subtracted</param>
+        /// <returns>the subtracted matricies</returns>
         public static Matrix4 operator -(Matrix4 lhs, Matrix4 rhs)
         {
             return new Matrix4(
@@ -125,6 +140,12 @@ namespace MathLibrary
                 );
         }
 
+        /// <summary>
+        /// Overload of the multiplication operator to multiply matricies
+        /// </summary>
+        /// <param name="lhs">the left matrix to be multiplied</param>
+        /// <param name="rhs">the right matrix to be multiplied</param>
+        /// <returns>the multiplied matricies</returns>
         public static Matrix4 operator *(Matrix4 lhs, Matrix4 rhs)
         {
             return new Matrix4(
@@ -166,6 +187,12 @@ namespace MathLibrary
                 );
         }
 
+        /// <summary>
+        /// Overload of the multiplication operator to multiply a matrix by a vector
+        /// </summary>
+        /// <param name="lhs">the left matrix to be multiplied</param>
+        /// <param name="rhs">the right vector to be multiplied</param>
+        /// <returns>the multiplied matrix</returns>
         public static Vector4 operator *(Matrix4 lhs, Vector4 rhs)
         {
             return new Vector4

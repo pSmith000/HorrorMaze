@@ -15,6 +15,7 @@ namespace HorrorMaze
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
         private Camera _camera;
+        private Camera2D _camera2D = new Camera2D(new System.Numerics.Vector2(0, 0), new System.Numerics.Vector2(0, 0), 0, 1);
         Player player;
         Scene scene = new Scene();
 
@@ -61,10 +62,10 @@ namespace HorrorMaze
         {
             _stopwatch.Start();
             //Create a window using raylib
-            //Raylib.InitWindow(1920, 1080, "Math for Games");
-            Raylib.InitWindow(900, 500, "Math for Games");
+            Raylib.InitWindow(1920, 1080, "Horror Maze");
             Raylib.SetTargetFPS(60);
 
+            //Initialize the characters and walls
             InitializeCharacters();
             InitializeWalls();
 
@@ -76,13 +77,16 @@ namespace HorrorMaze
         /// </summary>
         public void InitializeCharacters()
         {
+            //Create the player and add a collider and child
             player = new Player(0, 1, -90, 20, "Player", Shape.SPHERE);
             _camera = new Camera(player);
             player.SetScale(1, 1, 1);
             CircleCollider playerCircleCollider = new CircleCollider(1, player);
+            player.Collider = playerCircleCollider;
             player.SetColor(new Vector4(10, 20, 200, 255));
             player.AddChild(_camera);
 
+            //Create the enemy and all of its parts
             Enemy enemy = new Enemy(0, 1, 50, 10, player, "Enemy", Shape.CUBE);
             enemy.SetTranslation(0, 1, 100);
             enemy.SetColor(new Vector4(255, 0, 0, 255));
@@ -94,10 +98,10 @@ namespace HorrorMaze
             enemyHead.SetColor(new Vector4(255, 0, 10, 255));
             enemy.AddChild(enemyHead);
             Actor enemyEye1 = new Actor(0, 0, 0, "Enemy", Shape.SPHERE);
-            enemyEye1.SetScale(1, 1, 1);
             enemyEye1.SetColor(new Vector4(0, 0, 10, 255));
             enemyHead.AddChild(enemyEye1);
 
+            //Randomly places the win circle on the map
             Random rnd = new Random();
             float randomX = rnd.Next(-95, 95);
             float randomZ = rnd.Next(-95, 95);
@@ -107,8 +111,7 @@ namespace HorrorMaze
             CircleCollider winCollider = new CircleCollider(3, winCircle);
             winCircle.Collider = winCollider;
             
-            player.Collider = playerCircleCollider;
-            
+            //Adds all of the actors to the scene
             scene.AddActor(player);
             scene.AddActor(enemy);
             scene.AddActor(enemyTorso);
@@ -117,6 +120,7 @@ namespace HorrorMaze
             scene.AddActor(_camera);
             scene.AddActor(winCircle);
             
+            //Adds the scene to the current scene index
             _currentSceneIndex = AddScene(scene);
         }
 
@@ -268,10 +272,11 @@ namespace HorrorMaze
         /// </summary>
         private void Draw()
         {
+            //Start drawing
             Raylib.BeginDrawing();
             Raylib.BeginMode3D(_camera.Camera3D);
             
-
+            //Create the background color and the grid on the floor
             Raylib.ClearBackground(Color.BLACK);
             Raylib.DrawGrid(100, 10);
 
@@ -279,6 +284,14 @@ namespace HorrorMaze
             _scenes[_currentSceneIndex].Draw();
 
             Raylib.EndMode3D();
+
+            //Adds the text to the screen
+            Raylib.BeginMode2D(_camera2D);
+            Raylib.DrawText("WASD to move\nLeft/Right Arrow to rotate\n\nFind the green\n\nDon't get hit by the\n\nLook out for", 0, 0, 25, Color.BLACK);
+            Raylib.DrawText("Win Circle", 193, 111, 25, Color.GREEN);
+            Raylib.DrawText("Enemy", 255, 185, 25, Color.RED);
+            Raylib.DrawText("Secret Walls",169, 259, 25, Color.GRAY);
+            Raylib.EndMode2D();
             Raylib.EndDrawing();
         }
 
