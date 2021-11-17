@@ -8,21 +8,36 @@ namespace HorrorMaze
 {
     class CircleCollider : Collider
     {
+        //The class variable
         private float _collisionRadius;
 
+        /// <summary>
+        /// The radius of the collider
+        /// </summary>
         public float CollisionRadius
         {
             get { return _collisionRadius; }
             set { _collisionRadius = value; }
         }
 
+        /// <summary>
+        /// Constructor for this collider
+        /// </summary>
+        /// <param name="collisionRadius">the radius of the collider</param>
+        /// <param name="owner">the owner of the collider</param>
         public CircleCollider(float collisionRadius, Actor owner) : base(owner, ColliderType.CIRCLE)
         {
             _collisionRadius = collisionRadius;
         }
 
+        /// <summary>
+        /// Checks for a collision with another circle collider
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public override bool CheckCollisionCircle(CircleCollider other)
         {
+            //Checks to seee if the owner has collided with itself
             if (other.Owner == Owner)
                 return false;
 
@@ -34,6 +49,11 @@ namespace HorrorMaze
             return distance <= combinedRadii;
         }
 
+        /// <summary>
+        /// Checks to see if this collider has collided with an AABB collider
+        /// </summary>
+        /// <param name="other">the AABB collider</param>
+        /// <returns></returns>
         public override bool CheckCollisionAABB(AABBCollider other)
         {
             //Return false if this collider is checking collision against itself
@@ -51,8 +71,10 @@ namespace HorrorMaze
             //Add the direction vector to the AABB center to get the closest point to the circle
             Vector3 closestPoint = other.Owner.WorldPosition + direction;
 
+            //The collision normal of this collider is set 
             CollisionNormal = (closestPoint - Owner.WorldPosition).Normalized;
 
+            //The collision normal of the other collider is set
             other.CollisionNormal = (Owner.WorldPosition - closestPoint).Normalized;
 
             //Find the distance from the circle's center to the closest point
@@ -62,6 +84,9 @@ namespace HorrorMaze
             return distanceFromClosestPoint <= CollisionRadius;
         }
 
+        /// <summary>
+        /// Draws the circle hitbox
+        /// </summary>
         public override void Draw()
         {
             base.Draw();

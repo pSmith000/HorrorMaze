@@ -10,9 +10,7 @@ namespace HorrorMaze
     {
         private float _speed;
         private float _currentSpeed;
-        private Vector3 _currentPosition;
         private Vector3 _velocity;
-        int i = 80;
 
         public float Speed
         {
@@ -35,7 +33,6 @@ namespace HorrorMaze
 
         public override void Update(float deltaTime)
         {
-            _currentPosition = Velocity;
             //Get the player input direction
             int xDirection = Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
@@ -66,6 +63,10 @@ namespace HorrorMaze
                 
                 Translate(Velocity.X, Velocity.Y, Velocity.Z);
             }
+            if (actor.Name == "Enemy")
+                Engine.CloseApplication();
+            if (actor.Name == "Win")
+                Engine.CloseApplication();
             
         }
 

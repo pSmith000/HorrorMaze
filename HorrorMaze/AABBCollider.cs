@@ -8,6 +8,7 @@ namespace HorrorMaze
 {
     class AABBCollider : Collider
     {
+        //The class variables
         private float _width;
         private float _height;
         private float _depth;
@@ -30,6 +31,9 @@ namespace HorrorMaze
             set { _height = value; }
         }
 
+        /// <summary>
+        /// The size of this collider on the z axis
+        /// </summary>
         public float Depth
         {
             get { return _depth; }
@@ -80,6 +84,9 @@ namespace HorrorMaze
             }
         }
 
+        /// <summary>
+        /// The farthest z position forwards
+        /// </summary>
         public float Front
         {
             get
@@ -88,6 +95,9 @@ namespace HorrorMaze
             }
         }
 
+        /// <summary>
+        /// The farthest z position backwards
+        /// </summary>
         public float Back
         {
             get
@@ -96,6 +106,13 @@ namespace HorrorMaze
             }
         }
 
+        /// <summary>
+        /// The collider constructor
+        /// </summary>
+        /// <param name="width">the width of the collider</param>
+        /// <param name="height">the height of the collider</param>
+        /// <param name="depth">the depth of the collider</param>
+        /// <param name="owner">the owner of the collider</param>
         public AABBCollider(float width, float height, float depth, Actor owner) : base (owner, ColliderType.AABB)
         {
             _width = width;
@@ -103,6 +120,11 @@ namespace HorrorMaze
             _depth = depth;
         }
 
+        /// <summary>
+        /// Checks if this collider has collided with another AABB colider
+        /// </summary>
+        /// <param name="other">the other collider</param>
+        /// <returns></returns>
         public override bool CheckCollisionAABB(AABBCollider other)
         {
             //Return false if this owner is checking for a collision against itself
@@ -124,11 +146,19 @@ namespace HorrorMaze
             return false;
         }
 
+        /// <summary>
+        /// Checks if this collider has collided with a circle collider
+        /// </summary>
+        /// <param name="other">the other collider</param>
+        /// <returns></returns>
         public override bool CheckCollisionCircle(CircleCollider other)
         {
             return other.CheckCollisionAABB(this);
         }
 
+        /// <summary>
+        /// Draws the hitbox of the collider
+        /// </summary>
         public override void Draw()
         {
             Raylib.DrawCubeWires(new System.Numerics.Vector3(Owner.WorldPosition.X, Owner.WorldPosition.Y, Owner.WorldPosition.Z), Width, Height, Depth, Color.WHITE);

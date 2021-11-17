@@ -110,7 +110,7 @@ namespace HorrorMaze
             player.Collider = playerCircleCollider;
             
             scene.AddActor(player);
-            //scene.AddActor(enemy);
+            scene.AddActor(enemy);
             scene.AddActor(enemyTorso);
             scene.AddActor(enemyHead);
             scene.AddActor(enemyEye1);

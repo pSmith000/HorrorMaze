@@ -6,6 +6,9 @@ using Raylib_cs;
 
 namespace HorrorMaze
 {
+    /// <summary>
+    /// An enum for the shape drawn in 3d
+    /// </summary>
     public enum Shape
     {
         NONE,
@@ -13,8 +16,10 @@ namespace HorrorMaze
         SPHERE
     }
 
+
     class Actor
     {
+        //The class variables
         private string _name;
         private bool _started;
         private Vector3 _forward = new Vector3(0, 0, 1);
@@ -29,6 +34,9 @@ namespace HorrorMaze
         private Shape _shape;
         private Color _color = new Color(100, 100, 100, 255);
 
+        /// <summary>
+        /// Property for getting the color of the shape
+        /// </summary>
         public Color ShapeColor
         {
             get { return _color; }
@@ -42,13 +50,20 @@ namespace HorrorMaze
             get { return _started; }
         }
 
+        /// <summary>
+        /// Property for getting the name of the actor
+        /// </summary>
         public string Name
         {
             get { return _name; }
         }
 
+        /// <summary>
+        /// Property for getting and setting the local position of the actor
+        /// </summary>
         public Vector3 LocalPosition
         {
+            //Return the local translation
             get { return new Vector3(_translation.M03, _translation.M13, _translation.M23);  }
             set 
             {
@@ -82,29 +97,44 @@ namespace HorrorMaze
             }
         }
 
+        /// <summary>
+        /// The global movement of the actor
+        /// </summary>
         public Matrix4 GlobalTransform
         {
             get { return _globalTransform; }
             private set { _globalTransform = value; }
         }
 
+        /// <summary>
+        /// The local movement of the actor
+        /// </summary>
         public Matrix4 LocalTransform
         {
             get { return _localTransform; }
             private set { _localTransform = value; }
         }
 
+        /// <summary>
+        /// The parent of the actor
+        /// </summary>
         public Actor Parent
         {
             get { return _parent; }
             set { _parent = value; }
         }
 
+        /// <summary>
+        /// An array of the children an actor has
+        /// </summary>
         public Actor[] Children
         {
             get { return _children; }
         }
 
+        /// <summary>
+        /// The scale of the actor on the x, y, and z axis
+        /// </summary>
         public Vector3 Size
         {
             get 
@@ -118,30 +148,55 @@ namespace HorrorMaze
             set { SetScale(value.X, value.Y, value.Z); }
         }
 
+        /// <summary>
+        /// The way that the actor is facing
+        /// </summary>
         public Vector3 Forward
         {
             get { return new Vector3(_rotation.M02, _rotation.M12, _rotation.M22); }
             
         }
 
+        /// <summary>
+        /// The rotation of the actor on the x axis
+        /// </summary>
         public Vector3 Right
         {
             get { return new Vector3(_rotation.M00, _rotation.M10, _rotation.M20); }
 
         }
 
+        /// <summary>
+        /// The collider of the actor
+        /// </summary>
         public Collider Collider
         {
             get { return _collider; }
             set { _collider = value; }
         }
 
+        /// <summary>
+        /// A base constructor for the actor
+        /// </summary>
         public Actor() { }
 
+        /// <summary>
+        /// The main constructor for the actor
+        /// </summary>
+        /// <param name="x">position on the x axis</param>
+        /// <param name="y">position on the y axis</param>
+        /// <param name="z">position on the z axis</param>
+        /// <param name="name">name of the actor</param>
+        /// <param name="shape">the shape of the actor</param>
         public Actor(float x, float y, float z, string name = "Actor", Shape shape = Shape.CUBE) :
             this(new Vector3 { X = x, Y = y, Z = z}, name, shape) {}
 
-
+        /// <summary>
+        /// The second constructor for the actor
+        /// </summary>
+        /// <param name="position">The position of the actor using vector 3</param>
+        /// <param name="name">name of the actor</param>
+        /// <param name="shape">the shape of the actor</param>
         public Actor(Vector3 position, string name = "Actor", Shape shape = Shape.CUBE)
         {
             LocalPosition = position;
@@ -150,16 +205,28 @@ namespace HorrorMaze
 
         }
 
+        /// <summary>
+        /// Updating the transforms of the actor in the world
+        /// </summary>
         public void UpdateTransforms()
         {
+            //The local tranform is set to the rotation scale and translation of the actor
             _localTransform = _translation * _rotation * _scale;
 
+            //If the actor has a child...
             if (Parent != null)
+                //...the gloabal transform is set
                 GlobalTransform = Parent.GlobalTransform * LocalTransform;
+            //If the actor does not have a child...
             else
+                //...the global transform is set
                 GlobalTransform = LocalTransform; 
         }
 
+        /// <summary>
+        /// Adding a child to an actor
+        /// </summary>
+        /// <param name="child">the child being added</param>
         public void AddChild(Actor child)
         {
             //Create a temp array larger than the original
@@ -182,6 +249,11 @@ namespace HorrorMaze
 
         }
 
+        /// <summary>
+        /// Removing a child from an actor
+        /// </summary>
+        /// <param name="child">the child being removed</param>
+        /// <returns></returns>
         public bool RemoveChild(Actor child)
         {
             //Create a variable to store if the removal was successful
@@ -220,67 +292,107 @@ namespace HorrorMaze
             return childRemoved;
         }
 
+        /// <summary>
+        /// Starts the actor and sets the started variable to true
+        /// </summary>
         public virtual void Start()
         {
             _started = true;
         }
 
+        /// <summary>
+        /// Updates the transforms
+        /// </summary>
+        /// <param name="deltaTime">the amount of time that has passed</param>
         public virtual void Update(float deltaTime)
         {
             UpdateTransforms();
         }
 
+        /// <summary>
+        /// Draws the shapes and colliders to the screen
+        /// </summary>
         public virtual void Draw()
         {
+            //The start and end position of the shapes
             System.Numerics.Vector3 startPosition = new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z);
             System.Numerics.Vector3 endPosition = new System.Numerics.Vector3(WorldPosition.X + Forward.X * 50, WorldPosition.Y + Forward.Y * 50, WorldPosition.Z + Forward.Z * 50);
 
 
             switch (_shape)
             {
+                //If the shape is a cube...
                 case Shape.CUBE:
+                    //...draw a cube
                     Raylib.DrawCube(startPosition, Size.X, Size.Y, Size.Z, ShapeColor);
                     break;
+                    //If the shape is a shpere...
                 case Shape.SPHERE:
+                    //...draw a sphere
                     Raylib.DrawSphere(startPosition, Size.X, ShapeColor);
                     break;
             }
-
-            Raylib.DrawLine3D(startPosition, endPosition, Color.RED);
-
+            
+            //If the actor has a collider...
             if (this.Collider != null)
+                //...draw the collider
                 Collider.Draw();
         }
 
-        public void End()
-        {
+        /// <summary>
+        /// Ends the actor
+        /// </summary>
+        public void End() { }
 
-        }
+        /// <summary>
+        /// Called when the actor collides with another
+        /// </summary>
+        /// <param name="other">the actor that is colliding with this one</param>
+        public virtual void OnCollision(Actor other) { }
 
-        public virtual void OnCollision(Actor other)
-        {
-
-        }
-
+        /// <summary>
+        /// Checks for collision between actors
+        /// </summary>
+        /// <param name="other">the actor colliding with this one</param>
+        /// <returns>true if the actor has collided</returns>
         public virtual bool CheckForCollision(Actor other)
         {
             //Return false if either actor doesn't have a collider attached 
             if (Collider == null || other.Collider == null)
                 return false;
 
+            //Checks collision from the collider
             return Collider.CheckCollision(other);
         }
 
+        /// <summary>
+        /// Sets the translation of the actor
+        /// </summary>
+        /// <param name="translationX">translation on the x axis</param>
+        /// <param name="translationY">translation on the y axis</param>
+        /// <param name="translationZ">translation on the z axis</param>
         public void SetTranslation(float translationX, float translationY, float translationZ)
         {
             _translation = Matrix4.CreateTranslation(translationX, translationY, translationZ);
         }
 
+        /// <summary>
+        /// Translates the actor to the position
+        /// </summary>
+        /// <param name="translationX">translation on the x axis</param>
+        /// <param name="translationY">translation on the y axis</param>
+        /// <param name="translationZ">translation on the z axis</param>
         public void Translate(float translationX, float translationY, float translationZ)
         {
             _translation *= Matrix4.CreateTranslation(translationX, translationY, translationZ);
         }
 
+        /// <summary>
+        /// Sets the roatation of the actor
+        /// </summary>
+        /// <param name="roatationX">roatation on the x axis</param>
+        /// <param name="roatationY">roatation on the y axis</param>
+        /// <param name="roatationZ">roatation on the z axis</param>
         public void SetRotation(float radiansX, float radiansY, float radiansZ)
         {
             Matrix4 rotationX = Matrix4.CreateRotationX(radiansX);
@@ -289,6 +401,12 @@ namespace HorrorMaze
             _rotation = rotationX * rotationY * rotationZ;
         }
 
+        /// <summary>
+        /// Rotates the actor the amount of radians
+        /// </summary>
+        /// <param name="roatationX">roatation on the x axis</param>
+        /// <param name="roatationY">roatation on the y axis</param>
+        /// <param name="roatationZ">roatation on the z axis</param>
         public void Rotate(float radiansX, float radiansY, float radiansZ)
         {
             Matrix4 rotationX = Matrix4.CreateRotationX(radiansX);
@@ -297,11 +415,23 @@ namespace HorrorMaze
             _rotation *= rotationX * rotationY * rotationZ;
         }
 
+        /// <summary>
+        /// Sets the scale of the actor
+        /// </summary>
+        /// <param name="scaleX">scale on the x axis</param>
+        /// <param name="scaleY">scale on the y axis</param>
+        /// <param name="scaleZ">scale on the z axis</param>
         public void SetScale(float x, float y, float z)
         {
             _scale = Matrix4.CreateScale(x, y, z);
         }
 
+        /// <summary>
+        /// Scales the actor 
+        /// </summary>
+        /// <param name="scaleX">scale on the x axis</param>
+        /// <param name="scaleY">scale on the y axis</param>
+        /// <param name="scaleZ">scale on the z axis</param>
         public void Scale(float x, float y, float z)
         {
             _scale *= Matrix4.CreateScale(x, y, z);
