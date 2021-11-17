@@ -75,7 +75,7 @@ namespace HorrorMaze
         /// <summary>
         /// Initializes the player and the enemy
         /// </summary>
-        public void InitializeCharacters()
+        private void InitializeCharacters()
         {
             //Create the player and add a collider and child
             player = new Player(0, 1, -90, 20, "Player", Shape.SPHERE);
@@ -127,7 +127,7 @@ namespace HorrorMaze
         /// <summary>
         /// Initializes all of the walls in the maze
         /// </summary>
-        public void InitializeWalls()
+        private void InitializeWalls()
         {
             Wall wall = new Wall(0, -1, 0, 200, 1, 200, scene);
             wall.SetColor(new Vector4(0, 0, 0, 255));
