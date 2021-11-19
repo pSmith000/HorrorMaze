@@ -7,8 +7,8 @@ This is a horror themed maze where you as the player, a small blue ball, gets ch
 
 1. Download the Zip File
 2. Unzip the file onto your computer
-3. Open up the folder called Horror Maze
-4. Click on the file ending in .exe
+3. Open up the folder called v1.0
+4. Open up the file HorrorMaze.exe
 
 
 ## How To Play
