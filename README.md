@@ -3,6 +3,14 @@
 ## Introduction
 This is a horror themed maze where you as the player, a small blue ball, gets chased by an enemy. This enemy is a very scary red stick figure which changes speed and size the closer it gets to you. You must find the floating green ball hidden randomly in the maze. This green ball will let you escape the maze and win the game. If you get touched by the enemey however, the game ends and you lose.
 
+## How to Start
+
+1. Download the Zip File
+2. Unzip the file onto your computer
+3. Open up the folder called v1.0
+4. Open up the file HorrorMaze.exe
+
+
 ## How To Play
 
 W key - Move forward
